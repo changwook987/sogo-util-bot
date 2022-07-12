@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-    응애
+
 </body>
+<script>
+    const param = new URL(location.href).searchParams
+
+    const code = param.get('code')
+    const cli_id = '6556057329164884a42af81b4787629fd796f396a9184a0c8eee8a2a433d306b'
+    const cli_sc = 'ce9fb48bd1de42aa95a1234a3f64884c610c403da68845bebd41515c44fa137c'
+
+    const req = new XMLHttpRequest()
+    req.open('POST', 'https://dauth.b1nd.com/api/token')
+
+    req.setRequestHeader('Content-Type', 'application/json')
+    const body = new JSON()
+
+    req.send('{"code": "{0}", "client_id": "{1}", "client_secret": "{2}"}'.format(code, cli_id, cli_sc))
+    req.onload = () => console.log(req.responseText)
+</script>
+
 </html>
+
+<!--https://dauth.b1nd.com/login?client_id=6556057329164884a42af81b4787629fd796f396a9184a0c8eee8a2a433d306b&redirect_uri=dodam.b1nd.com-->
