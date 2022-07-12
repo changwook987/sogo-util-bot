@@ -21,7 +21,13 @@
 
     req.setRequestHeader('Content-Type', 'application/json')
 
-    req.send(String.format('{"code": "{0}", "client_id": "{1}", "client_secret": "{2}"}', code, cli_id, cli_sc))
+    body = class {
+        code = code
+        client_id = cli_id
+        client_secret = cli_sc
+    }
+
+    req.send(JSON.stringify(body))
     req.onload = () => console.log(req.responseText)
 </script>
 
